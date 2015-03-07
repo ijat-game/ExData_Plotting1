@@ -16,7 +16,9 @@ pwrslice$DateTime<-as.POSIXct(paste(pwrslice$Date,
 #summary(pwrslice)
 #str(pwrslice)
 # put 4 plots on one page
-par(mfrow = c(2, 2))
+#par(mfrow = c(2, 2))
+png("plot4.png")
+par(mfrow = c(2,2), mar = c(4, 4, 4, 1))
 dayofweek=format(seq(pwrslice$DateTime[1],max(pwrslice$DateTime)+1440,by='days')
                  ,format='%a')
 #Create plot
@@ -28,7 +30,7 @@ dayofweek=format(seq(pwrslice$DateTime[1],max(pwrslice$DateTime)+1440,by='days')
   
 #Voltage
   plot(pwrslice$DateTime,pwrslice$Voltage,
-     ,type='l',xlab="Datetime" ,ylab="Voltage" )
+     ,type='l',xlab="datetime" ,ylab="Voltage" )
 
 #Energy sub metering
 
@@ -45,14 +47,15 @@ lines(pwrslice$DateTime,pwrslice$Sub_metering_3,type='l',col='blue')
 axis(side=1, at=seq(pwrslice$DateTime[1],max(pwrslice$DateTime)+1440,by='days'), 
      labels=dayofweek)
 axis(side=2,at=seq(0,30,by=10), labels=seq(0,30 ,by=10))
-legend("topright", lty=1,cex=.5,xjust=1
+#par(mar=c(0, 0, 0, 0))
+legend("topright", lty=1
        ,bty="n"
-       , col = c("black","blue", "red"), 
+       , col = c("black","red", "blue"), 
        legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 box()
 # Global_reactive_power
 plot(pwrslice$DateTime,pwrslice$Global_reactive_power
-     ,type='n',xlab="Datetime" ,ylab="Global_reactive_power"
+     ,type='n',xlab="datetime" ,ylab="Global_reactive_power"
      ,axes=FALSE
      #,ylim=range(.0:.5)
      )
@@ -62,5 +65,5 @@ axis(side=1, at=seq(pwrslice$DateTime[1],max(pwrslice$DateTime)+1440,by='days'),
 axis(side=2,cex.axis=.7,at=seq(0.0,0.5, 0.1), labels=c("0.0","0.1","0.2","0.3","0.4","0.5"))
 box()
 #Save plot as PNG
-dev.copy(png, file = "plot4.png") 
+#dev.copy(png, file = "plot4.png") 
 dev.off() 
