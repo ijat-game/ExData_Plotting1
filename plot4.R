@@ -45,7 +45,8 @@ lines(pwrslice$DateTime,pwrslice$Sub_metering_3,type='l',col='blue')
 axis(side=1, at=seq(pwrslice$DateTime[1],max(pwrslice$DateTime)+1440,by='days'), 
      labels=dayofweek)
 axis(side=2,at=seq(0,30,by=10), labels=seq(0,30 ,by=10))
-legend("topright", lty=1,cex=.5,xjust=1,bty="n"
+legend("topright", lty=1,cex=.5,xjust=1
+       ,bty="n"
        , col = c("black","blue", "red"), 
        legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 box()
